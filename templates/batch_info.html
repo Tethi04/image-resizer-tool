@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch Script Info - Cute Image Resizer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .cute-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: none;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .btn-cute {
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            padding: 12px 30px;
+            transition: all 0.3s ease;
+        }
+        .btn-cute:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Header -->
+                <div class="text-center mb-5">
+                    <a href="/" class="btn btn-light rounded-pill mb-3">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Web Tool
+                    </a>
+                    <h1 class="text-white fw-bold mb-3">
+                        <i class="fas fa-terminal me-3"></i>
+                        Batch Script Usage
+                    </h1>
+                    <p class="text-white-50 lead">Use the command-line version for automation</p>
+                </div>
+
+                <!-- Instructions Card -->
+                <div class="cute-card p-4 p-md-5">
+                    <h3 class="mb-4">📁 How to Use the Python Script</h3>
+
+                    <div class="mb-4">
+                        <h5>1. Create folder structure:</h5>
+                        <div class="code-block">
+                            project/<br>
+                            ├── image_resizer.py<br>
+                            ├── input_images/&nbsp;&nbsp;&nbsp;&nbsp;# Add your images here<br>
+                            └── resized_images/&nbsp;&nbsp;# Output folder (created automatically)
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5>2. Basic usage:</h5>
+                        <div class="code-block">
+                            # Resize all images to 800x600<br>
+                            python image_resizer.py<br><br>
+                            
+                            # Custom size<br>
+                            python image_resizer.py --width 1024 --height 768<br><br>
+                            
+                            # Custom folders and format<br>
+                            python image_resizer.py --input my_images --output results --width 400 --height 300 --format PNG
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5>3. All available options:</h5>
+                        <div class="code-block">
+                            python image_resizer.py --help<br><br>
+                            usage: image_resizer.py [-h] [--input INPUT] [--output OUTPUT] <br>
+                                            [--width WIDTH] [--height HEIGHT] [--format {JPEG,PNG,WEBP}]<br><br>
+                            
+                            Batch Image Resizer Tool<br><br>
+                            
+                            optional arguments:<br>
+                            -h, --help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;show this help message and exit<br>
+                            --input INPUT, -i INPUT&nbsp;Input folder path (default: input_images)<br>
+                            --output OUTPUT, -o OUTPUT Output folder path (default: resized_images)<br>
+                            --width WIDTH, -w WIDTH&nbsp;Target width (default: 800)<br>
+                            --height HEIGHT, -ht HEIGHT Target height (default: 600)<br>
+                            --format FORMAT, -f FORMAT Output format (optional)
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Tip:</strong> The script automatically handles different image formats and maintains aspect ratio during resizing.
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a href="/" class="btn btn-cute">
+                            <i class="fas fa-image me-2"></i>
+                            Use Web Version Instead
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+  </html>
