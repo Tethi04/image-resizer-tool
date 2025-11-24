@@ -4,6 +4,7 @@ A beautiful and efficient batch image resizer with both web interface and comman
 
 ## 🌟 Live Demo
 **Live App:**   image-resizer-tool-production.up.railway.app
+image-resizer-tool-production.up.railway.app
 ## ✨ Features
 
 - 🎨 **Beautiful Web Interface** - Cute and responsive design
