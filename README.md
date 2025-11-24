@@ -3,7 +3,7 @@
 A beautiful and efficient batch image resizer with both web interface and command-line options.
 
 ## 🌟 Live Demo
-**Live App:**  image-resizer-tool-production.up.railway.app
+**Live App:** https://image-resizer-tool-production.up.railway.app
 ## ✨ Features
 
 - 🎨 **Beautiful Web Interface** - Cute and responsive design
