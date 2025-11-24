@@ -3,7 +3,7 @@
 A beautiful and efficient batch image resizer with both web interface and command-line options.
 
 ## 🌟 Live Demo
-**Your app will be live at:** `https://cute-image-resizer.onrender.com` (after deployment)
+**Live App:** https://image-resizer-tool-production.up.railway.app
 
 ## ✨ Features
 
