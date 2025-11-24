@@ -15,7 +15,7 @@ def resize_image(input_path, output_path, size, format=None):
                 img = rgb_img
             
             # Resize image
-            resized_img = img.resize(size, Image.Resampling.LANCZOS)
+            resized_img = img.resize(size, Image.LANCZOS)
             
             # Save image
             if format:
