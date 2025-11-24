@@ -5,23 +5,17 @@ import argparse
 def resize_image(input_path, output_path, size, format=None):
     """
     Resize an image to the specified size and save it.
-    
-    Args:
-        input_path (str): Path to input image
-        output_path (str): Path to save resized image
-        size (tuple): Target size as (width, height)
-        format (str): Output format (e.g., 'JPEG', 'PNG')
     """
     try:
         with Image.open(input_path) as img:
-            # Convert to RGB if necessary (for JPEG)
-            if img.mode in ('RGBA', 'LA', 'P'):
+            # Convert to RGB if necessary (for JPEG format)
+            if format == 'JPEG' and img.mode in ('RGBA', 'LA', 'P'):
                 rgb_img = Image.new('RGB', img.size, (255, 255, 255))
                 rgb_img.paste(img, mask=img.split()[-1] if img.mode == 'RGBA' else None)
                 img = rgb_img
             
             # Resize image
-            resized_img = img.resize(size, Image.LANCZOS)
+            resized_img = img.resize(size, Image.Resampling.LANCZOS)
             
             # Save image
             if format:
@@ -39,12 +33,6 @@ def resize_image(input_path, output_path, size, format=None):
 def batch_resize_images(input_folder, output_folder, size, output_format=None):
     """
     Resize all images in a folder.
-    
-    Args:
-        input_folder (str): Path to input folder
-        output_folder (str): Path to output folder
-        size (tuple): Target size as (width, height)
-        output_format (str): Desired output format
     """
     # Create output folder if it doesn't exist
     if not os.path.exists(output_folder):
@@ -55,28 +43,33 @@ def batch_resize_images(input_folder, output_folder, size, output_format=None):
     
     # Process all images in input folder
     processed_count = 0
-    for filename in os.listdir(input_folder):
-        if filename.lower().endswith(supported_formats):
-            input_path = os.path.join(input_folder, filename)
-            
-            # Determine output filename and format
-            name, ext = os.path.splitext(filename)
-            if output_format:
-                output_filename = f"{name}.{output_format.lower()}"
-            else:
-                output_filename = filename
-            
-            output_path = os.path.join(output_folder, output_filename)
-            
-            # Resize image
-            if resize_image(input_path, output_path, size, output_format):
-                processed_count += 1
+    image_files = [f for f in os.listdir(input_folder) if f.lower().endswith(supported_formats)]
+    
+    if not image_files:
+        print("❌ No image files found in input folder!")
+        return
+    
+    for filename in image_files:
+        input_path = os.path.join(input_folder, filename)
+        
+        # Determine output filename and format
+        name, ext = os.path.splitext(filename)
+        if output_format:
+            output_filename = f"{name}.{output_format.lower()}"
+        else:
+            output_filename = f"resized_{filename}"
+        
+        output_path = os.path.join(output_folder, output_filename)
+        
+        # Resize image
+        if resize_image(input_path, output_path, size, output_format):
+            processed_count += 1
     
     print(f"\n🎉 Resizing complete! Processed {processed_count} images.")
     print(f"📁 Output folder: {output_folder}")
 
 def main():
-    parser = argparse.ArgumentParser(description='Batch Image Resizer Tool')
+    parser = argparse.ArgumentParser(description='🎨 Batch Image Resizer Tool')
     parser.add_argument('--input', '-i', default='input_images', 
                        help='Input folder path (default: input_images)')
     parser.add_argument('--output', '-o', default='resized_images', 
@@ -91,12 +84,13 @@ def main():
     args = parser.parse_args()
     
     print("🖼️  Image Resizer Tool")
-    print("=" * 30)
+    print("=" * 40)
     
     # Check if input folder exists
     if not os.path.exists(args.input):
         print(f"❌ Input folder '{args.input}' not found!")
-        print("Please create an 'input_images' folder and add your images.")
+        print("💡 Please create an 'input_images' folder and add your images.")
+        print("   Or specify a different folder with: --input YOUR_FOLDER")
         return
     
     target_size = (args.width, args.height)
@@ -106,7 +100,8 @@ def main():
     print(f"📐 Size: {args.width}x{args.height}")
     if args.format:
         print(f"🎨 Format: {args.format}")
-    print("=" * 30)
+    print("=" * 40)
+    print("Processing images...\n")
     
     batch_resize_images(args.input, args.output, target_size, args.format)
 
