@@ -24,7 +24,7 @@ def resize_single_image(image_file, width, height, output_format=None):
                 rgb_img.paste(img, mask=img.split()[-1] if img.mode == 'RGBA' else None)
                 img = rgb_img
             
-            # Resize image
+            # Resize image - use LANCZOS for Pillow 9.5.0
             resized_img = img.resize((width, height), Image.LANCZOS)
             
             # Save to bytes
